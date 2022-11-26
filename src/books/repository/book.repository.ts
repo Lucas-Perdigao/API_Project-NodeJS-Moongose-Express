@@ -1,12 +1,12 @@
 import { Book } from "../models/book.model";
 import { Model } from "mongoose";
 
+
 export class BookRepository {
     constructor(private readonly bookModel: Model<Book>) {}
 
     async getAll(): Promise<Book[]>{
         const books = await this.bookModel.find()
-
         return books
     }
 

@@ -8,3 +8,6 @@ export function bookFactory(){
 }
 
 export const book = bookFactory()
+
+
+//FAZER COM CLASSE
