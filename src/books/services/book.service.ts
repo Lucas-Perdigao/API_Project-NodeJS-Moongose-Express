@@ -24,7 +24,7 @@ export class BookService {
             const book = await this.bookRepository.getById(id)
             return book
         } catch (error) {
-            return invalidIdError(error)
+            return promiseError(error)
         }
     }
 
@@ -33,7 +33,7 @@ export class BookService {
             const book = await this.bookRepository.create(bookBody)
             return book 
         } catch (error) {
-            return (error)
+            return promiseError(error)
         }
     }
 

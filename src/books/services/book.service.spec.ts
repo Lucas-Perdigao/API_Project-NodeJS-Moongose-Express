@@ -24,7 +24,7 @@ describe("BookService", () => {
             const getAllError = await bookService.getAll()
             expect(getAllError).toEqual({
                 promiseError: {
-                    message: "unable to request the Database",
+                    message: "unable to request to the Database",
                     error: "Error"
                 }
             })
@@ -48,7 +48,7 @@ describe("BookService", () => {
             const getByIdError = await bookService.getById(fakeId)
             expect(getByIdError).toEqual({
                 promiseError: {
-                    message: "unable to request the Database",
+                    message: "unable to request to the Database",
                     error: "Error"
                 }
             })
@@ -74,10 +74,10 @@ describe("BookService", () => {
 
         it("should return an promiseError", async () => {
             jest.spyOn(fakeBookRepository, "create").mockRejectedValueOnce("Error")
-            const createError = await fakeBookRepository.create(fakeBookData[0])
+            const createError = await bookService.create(fakeBookData[0])
             expect(createError).toEqual({
                 promiseError: {
-                    message: "unable to request the Database",
+                    message: "unable to request to the Database",
                     error: "Error"
                 }
             })
@@ -88,7 +88,7 @@ describe("BookService", () => {
         it("should call BookRepository.update()", async () => {
             const spyUpdate = jest.spyOn(fakeBookRepository, "update")
             await bookService.update(fakeId, updatedBook)
-            expect(spyUpdate).toEqual(updatedBook)
+            expect(spyUpdate).toHaveBeenCalled()
         })
 
         it("should return an promiseError", async () => {
@@ -96,7 +96,7 @@ describe("BookService", () => {
             const updateError = await bookService.update(fakeId, updatedBook)
             expect(updateError).toEqual({
                 promiseError: {
-                    message: "unable to request the Database",
+                    message: "unable to request to the Database",
                     error: "Error"
                 }
             })
