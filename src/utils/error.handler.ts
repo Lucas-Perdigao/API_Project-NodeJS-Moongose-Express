@@ -24,7 +24,7 @@ export type CustomError = PromiseTypeError | InvalidIdError
 export function promiseError(error: unknown): PromiseTypeError {
     return {
         promiseError: {
-            message: "unable to request the Database",
+            message: "unable to request to the Database",
             error: error,
         }
     }

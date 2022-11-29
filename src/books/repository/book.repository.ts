@@ -33,6 +33,17 @@ export class BookRepository {
         
         return updatedBook
     }
+
+    // async updateStatus(id: string, book: Book): Promise<Book>{
+    //     const { status } = book
+    //     const updatedStatus = await this.bookModel.findByIdAndUpdate(id, { $set: { status }})
+
+    //     if (updatedStatus === null){
+    //         return {} as Book
+    //     }
+
+    //     return updatedStatus
+    // }
 }
 
 

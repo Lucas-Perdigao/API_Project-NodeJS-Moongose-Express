@@ -6,10 +6,28 @@ const bookSchema = new Schema({
         required: true,
         maxLength: 25
     },
+    releaseDate: {
+        type: String,
+        maxLength: 18,
+        required: true,
+    },
+    language: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: Boolean,
+        required: true,
+    },
     content: {
         type: String,
         required: true,
         maxLength: 200
+    },
+    reviewId: {
+        type: Schema.Types.ObjectId,
+        ref: 'review',
+        unique: true
     },
     createdAt: {
         type: String,

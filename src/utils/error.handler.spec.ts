@@ -17,7 +17,7 @@ describe("error.handler", () => {
             const error = promiseError("error")
             expect(error).toEqual({
                 promiseError: {
-                    message: "unable to request to Database",
+                    message: "unable to request to the Database",
                     error: "error"
                 }
             })
@@ -39,7 +39,7 @@ describe("invalidIdError", () => {
     it("should return an object with a invalidIdError property with a message property", () => {
         const error = invalidIdError("invalidId")
         expect(error).toEqual({
-            promiseError: {
+            invalidIdError: {
                 message: "invalid ID on request, please submit a object ID",
                 id: "invalidId"
             }
