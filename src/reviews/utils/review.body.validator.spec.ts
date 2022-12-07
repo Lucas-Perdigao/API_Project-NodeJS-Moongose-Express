@@ -1,13 +1,11 @@
 import { describe, it, expect } from "@jest/globals";
-import { invalidBody } from "./book.body.validator";
+import { invalidBody } from "./review.body.validator";
 
 
 const validTestObj = {
     body: {
         title: "Memórias Póstumas de Brás Cubas",
-        releaseDate: "1881",
-        language: "português",
-        status: true,
+        score: 3,
         content: "Um morto muito doido.",
     },
 }

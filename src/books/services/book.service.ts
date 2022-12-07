@@ -1,14 +1,14 @@
 import { CustomError, invalidIdError, promiseError, PromiseTypeError } from "../../utils/error.handler";
 import { Book } from "../models/book.model";
-import { BookRepository } from "../repository/book.repository";
+import { BookRepository } from "../repositories/book.repository";
 import { Types } from "mongoose";
 
 export class BookService {
     constructor(private readonly bookRepository: BookRepository) {}
 
-    async getAll(): Promise<Book[] | CustomError> {
+    async getAll(author: string): Promise<Book[] | CustomError> {
         try {
-            const books = await this.bookRepository.getAll()
+            const books = await this.bookRepository.getAll(author)
             return books
         } catch (error) {
             return promiseError(error)

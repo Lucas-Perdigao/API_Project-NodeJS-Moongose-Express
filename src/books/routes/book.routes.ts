@@ -3,9 +3,10 @@ import { book } from "../factories/book.factory"
 
 const bookRoutes = express.Router()
 
-bookRoutes.get("/", book.getAll.bind(book))
-bookRoutes.get("/:id", book.getById.bind(book))
-bookRoutes.post("/", book.create.bind(book))
-bookRoutes.put("/:id", book.update.bind(book))
+bookRoutes.get("/books", book.getAll.bind(book))
+bookRoutes.get("/books/:author", book.getAll.bind(book))
+bookRoutes.get("/books/:id", book.getById.bind(book))
+bookRoutes.post("/books", book.create.bind(book))
+bookRoutes.put("/books:id", book.update.bind(book))
 
 export default bookRoutes

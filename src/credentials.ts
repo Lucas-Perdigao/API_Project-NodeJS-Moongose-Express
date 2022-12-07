@@ -1,0 +1,1 @@
+export const mongo = "mongodb+srv://Lucas:123mongo@lucasperdigaodb.0mitegp.mongodb.net/?retryWrites=true&w=majority" as string

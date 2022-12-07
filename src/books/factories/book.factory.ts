@@ -1,6 +1,6 @@
 import { BookController } from "../controllers/book.controller";
 import { BookModel } from "../models/book.model";
-import { BookRepository } from "../repository/book.repository";
+import { BookRepository } from "../repositories/book.repository";
 import { BookService } from "../services/book.service"
 
 export function bookFactory(){

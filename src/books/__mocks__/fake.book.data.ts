@@ -6,8 +6,9 @@ export const fakeBookData: Book[] = [
     {
         title: "Memórias Póstumas de Brás Cubas",
         releaseDate: "1881",
-        language: "português",
+        language: ["português"],
         status: true,
+        author: "Machado de Assis",
         content: "Um morto muito doido.",
         createdAt: "1669069892027",
         updatedAt: "1669069893000"
@@ -15,8 +16,9 @@ export const fakeBookData: Book[] = [
     {
         title: "Capitães da Areia",
         releaseDate: "1937",
-        language: "português",
+        language: ["português"],
         status: true,
+        author: "Jorge Amado",
         content: "Uma turma do barulho.",
         createdAt: "1669069894027",
         updatedAt: "1669069895000"
@@ -24,8 +26,9 @@ export const fakeBookData: Book[] = [
     {
         title: "O Cortiço",
         releaseDate: "1890",
-        language: "português",
+        language: ["português"],
         status: true,
+        author: "Aluisio Azevedo",
         content: "Confusão ao dividir o aluguel.",
         createdAt: "1669069896027",
         updatedAt: "1669069897000"
@@ -35,8 +38,9 @@ export const fakeBookData: Book[] = [
 export const updatedBook: Book = {
     title: "Auto da Comparecida",
     releaseDate: "1955",
-    language: "português",
+    language: ["português"],
     status: true,
+    author: "Ariano Suassuna",
     content: "Deus e o Diabo na Terra do Sol",
     createdAt: "1669069898027",
     updatedAt: "1669069899000"

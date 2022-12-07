@@ -1,6 +1,4 @@
-import { Request } from "express"
-
-export function invalidBody(req: Request) {
+export function invalidBody(req: any) {
     const book = {
         title: req.body.title,
         releaseDate: req.body.releaseDate,
@@ -12,7 +10,7 @@ export function invalidBody(req: Request) {
     const jsonBook = JSON.stringify(book)
     const jsonBody = JSON.stringify(req.body)
 
-    if (jsonBook != jsonBody) {
+    if (jsonBook !== jsonBody) {
         return true
     }
 

@@ -20,7 +20,7 @@ describe("BookRepository", () => {
     })
 
     describe("getById", () => {
-        it("should return a sigle book", async () => {
+        it("should return a single book", async () => {
             const book =  await bookRepository.getById(fakeId)
             expect(book).toEqual(fakeBookData[0])
         })

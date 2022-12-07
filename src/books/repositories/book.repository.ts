@@ -5,13 +5,18 @@ import { Model } from "mongoose";
 export class BookRepository {
     constructor(private readonly bookModel: Model<Book>) {}
 
-    async getAll(): Promise<Book[]>{
-        const books = await this.bookModel.find()
+    async getAll(author: string): Promise<Book[]>{
+        if (author == null){
+            const books = await this.bookModel.find().populate('review')
+            return books
+        }
+
+        const books = await this.bookModel.find({author: author}).populate('review')
         return books
     }
 
     async getById(id: string): Promise<Book>{
-        const book = await this.bookModel.findById(id)
+        const book = await this.bookModel.findById(id).populate('review')
 
         if (book === null){
             return {} as Book
@@ -25,7 +30,8 @@ export class BookRepository {
     }
 
     async update(id: string, book: Book): Promise<Book>{
-        const updatedBook = await this.bookModel.findByIdAndUpdate(id, book, {new: true})
+        const { status, language, reviewId } = book
+        const updatedBook = await this.bookModel.findByIdAndUpdate(id, {$set: {status: status, language: language, reviewId: reviewId}}, {new: true})
 
         if (updatedBook ===  null){
             return {} as Book

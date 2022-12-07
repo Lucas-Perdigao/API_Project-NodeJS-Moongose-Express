@@ -1,5 +1,5 @@
 import { fakeBookData, updatedBook } from "./fake.book.data";
-import { BookRepository } from "../repository/book.repository";
+import { BookRepository } from "../repositories/book.repository";
 
 export const fakeBookRepository = {
     getAll: () => Promise.resolve(fakeBookData),
