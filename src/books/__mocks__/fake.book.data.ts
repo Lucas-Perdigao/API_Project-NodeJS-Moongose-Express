@@ -1,35 +1,40 @@
+import { Schema, Types } from "mongoose";
 import { Book } from "../models/book.model";
 
 export const fakeId = "632130d41623c49bf7b1c7e9"
+
+export const validFakeAuthorParam = "Machado de Assis"
+
+export const invalidFakeAuthorParam = "Espada de Abreu"
 
 export const fakeBookData: Book[] = [
     {
         title: "Memórias Póstumas de Brás Cubas",
         releaseDate: "1881",
-        language: ["português"],
+        language: ["português", "inglês"],
         status: true,
         author: "Machado de Assis",
-        content: "Um morto muito doido.",
+        reviewId: new Types.ObjectId("632130d41623c49bf7b1c7e9"),
         createdAt: "1669069892027",
         updatedAt: "1669069893000"
     },
     {
         title: "Capitães da Areia",
         releaseDate: "1937",
-        language: ["português"],
+        language: ["português", "espanhol"],
         status: true,
         author: "Jorge Amado",
-        content: "Uma turma do barulho.",
+        reviewId: new Types.ObjectId("632130d41623c49bf7b1c7e9"),
         createdAt: "1669069894027",
         updatedAt: "1669069895000"
     },
     {
         title: "O Cortiço",
         releaseDate: "1890",
-        language: ["português"],
+        language: ["português", "inglês", "alemão"],
         status: true,
-        author: "Aluisio Azevedo",
-        content: "Confusão ao dividir o aluguel.",
+        author: "Aluísio Azevedo",
+        reviewId: new Types.ObjectId("632130d41623c49bf7b1c7e9"),
         createdAt: "1669069896027",
         updatedAt: "1669069897000"
     },
@@ -40,8 +45,8 @@ export const updatedBook: Book = {
     releaseDate: "1955",
     language: ["português"],
     status: true,
+    reviewId: new Types.ObjectId("632130d41623c49bf7b1c7e9"),
     author: "Ariano Suassuna",
-    content: "Deus e o Diabo na Terra do Sol",
     createdAt: "1669069898027",
     updatedAt: "1669069899000"
 }

@@ -107,4 +107,28 @@ describe("BookService", () => {
             expect(updateError).toEqual(invalidIdError("invalidIdExample"));
         })
     })
+
+    describe("updateStatus", () => {
+        it("should call BookRepository.updateStatus()", async () =>{
+            const spyUpdate = jest.spyOn(fakeBookRepository, "updateStatus")
+            await bookService.updateStatus(fakeId, updatedBook)
+            expect(spyUpdate).toHaveBeenCalled()
+        })
+
+        it("should return an promiseError", async () => {
+            jest.spyOn(fakeBookRepository, "updateStatus").mockRejectedValueOnce("Error")
+            const updateError = await bookService.updateStatus(fakeId, updatedBook)
+            expect(updateError).toEqual({
+                promiseError: {
+                    message: "unable to request to the Database",
+                    error: "Error"
+                }
+            })
+        })
+
+        it("should return an invalidIdError", async () => {
+            const updateError = await bookService.updateStatus("invalidIdExample", updatedBook);
+            expect(updateError).toEqual(invalidIdError("invalidIdExample"));
+        })
+    })
 })
