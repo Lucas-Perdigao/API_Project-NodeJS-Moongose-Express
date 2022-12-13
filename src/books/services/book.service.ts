@@ -1,4 +1,4 @@
-import { CustomError, invalidIdError, promiseError, PromiseTypeError } from "../../utils/error.handler";
+import { CustomError, invalidIdError, notFoundError, promiseError, PromiseTypeError } from "../../utils/error.handler";
 import { Book } from "../models/book.model";
 import { BookRepository } from "../repositories/book.repository";
 import { Types } from "mongoose";
@@ -42,6 +42,7 @@ export class BookService {
             const book = await this.bookRepository.create(bookBody)
             return book 
         } catch (error) {
+            console.log(error)
             return promiseError(error)
         }
     }
@@ -65,9 +66,13 @@ export class BookService {
         }
 
         try {
-            const book = await this.bookRepository.update(id, bookBody)
+            const book = await this.bookRepository.updateStatus(id, bookBody)
+            if(!book){
+                return notFoundError(new Error("ID not found in the Database"))
+            }
             return book
         } catch (error) {
+            console.log(error)
             return promiseError(error)
         }
     }

@@ -28,16 +28,9 @@ const bookSchema = new Schema({
     reviewId: {
         type: Schema.Types.ObjectId,
         ref: 'Review',
-        unique: true
-    },
-    createdAt: {
-        type: String,
-        required: true,
-        default: new Date().getTime()
-    },
-    updatedAt: {
-        type: String,
     }
+}, {
+    timestamps: true
 })
 
 export type Book = InferSchemaType<typeof bookSchema>

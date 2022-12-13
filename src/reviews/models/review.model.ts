@@ -16,14 +16,14 @@ const reviewSchema = new Schema({
         min: 1,
         max: 5
     },
-    createdAt: {
-        type: String,
-        required: true,
-        default: new Date().getTime()
-    },
     updatedAt: {
         type: [String],
     },
+}, {
+    timestamps: { 
+        createdAt: true, 
+        updatedAt: false
+    }
 })
 
 export type Review = InferSchemaType<typeof reviewSchema>

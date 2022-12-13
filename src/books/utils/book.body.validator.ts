@@ -1,10 +1,12 @@
-export function invalidBody(req: any) {
+import { Request } from "express";
+
+export function invalidBody(req: Request) {
     const book = {
         title: req.body.title,
         releaseDate: req.body.releaseDate,
         language: req.body.language,
         status: req.body.status,
-        content: req.body.content
+        author: req.body.author
     }
 
     const jsonBook = JSON.stringify(book)

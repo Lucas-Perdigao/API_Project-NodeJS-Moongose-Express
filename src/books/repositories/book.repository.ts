@@ -16,7 +16,7 @@ export class BookRepository {
     }
 
     async getAllByAuthor(author: string): Promise<Book[]>{
-        const books = await this.bookModel.find({author: author})
+        const books = await this.bookModel.find({author})
 
         if (books == null){
             return {} as Book[]
@@ -41,7 +41,20 @@ export class BookRepository {
 
     async update(id: string, book: Book): Promise<Book>{
         const { language, reviewId } = book
-        const updatedBook = await this.bookModel.findByIdAndUpdate(id, {$set: {language: language, reviewId: reviewId}}, {new: true})
+        const updatedBook = await this.bookModel.findByIdAndUpdate(id,
+            {
+                $set:{
+                    language: language, 
+                },
+                $push: 
+                    {
+                        reviewId: reviewId, 
+                    }
+            }, 
+            {
+                new: true
+            }
+        )
 
         if (updatedBook ===  null){
             return {} as Book
@@ -50,13 +63,13 @@ export class BookRepository {
         return updatedBook
     }
 
-    async updateStatus(id: string, book: Book): Promise<Book>{
+    async updateStatus(id: string, book: Book): Promise<Book | null>{
         const { status } = book
-        const updatedStatus = await this.bookModel.findByIdAndUpdate(id, { $set: { status: status }})
+        const updatedStatus = await this.bookModel.findByIdAndUpdate(id, { $set: { status: status }}, {new: true})
 
-        if (updatedStatus === null){
-            return {} as Book
-        }
+        // if (updatedStatus === null){
+        //     return {} as Book
+        // }
 
         return updatedStatus
     }

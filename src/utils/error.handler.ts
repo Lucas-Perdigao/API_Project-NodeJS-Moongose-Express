@@ -19,7 +19,23 @@ export type InvalidBodyError = {
     }
 }
 
-export type CustomError = PromiseTypeError | InvalidIdError
+export type NotFoundError = {
+    notFoundError: {
+        message: string,
+        error: unknown
+    }
+}
+
+export type CustomError = PromiseTypeError | InvalidIdError | NotFoundError
+
+export function notFoundError(error: unknown): NotFoundError{
+    return {
+        notFoundError: {
+            message: "Id not found in the Database",
+            error: error
+        }
+    }
+}
 
 export function promiseError(error: unknown): PromiseTypeError {
     return {
@@ -42,7 +58,7 @@ export function invalidIdError(id: string): InvalidIdError {
 export function invalidBodyError(body: unknown): InvalidBodyError {
     return {
         invalidBodyError: {
-            message: "Body is no valid",
+            message: "Body is not valid",
             body: body  
         }
     }

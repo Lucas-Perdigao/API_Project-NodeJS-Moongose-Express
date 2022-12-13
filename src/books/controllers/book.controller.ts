@@ -3,11 +3,23 @@ import { StatusCode } from "../../utils/status.code";
 import { Request, Response } from "express";
 import { invalidBody } from "../utils/book.body.validator";
 import { invalidBodyError } from "../../utils/error.handler";
+import { isAuthor } from "../utils/book.author.validator"
 
 export class BookController {
     constructor(private readonly bookService: BookService) {}
 
     async getAll(req: Request, res: Response) {
+        const author = req.query.author
+
+        // if(!isAuthor(author)){
+
+        // }
+
+        if(author){
+            const result = await this.bookService.getAllByAuthor(author as string)
+            return res.status(StatusCode.OK).json(result)
+        }
+
         const result = await this.bookService.getAll()
 
         if("promiseError" in result){
@@ -17,16 +29,16 @@ export class BookController {
         return res.status(StatusCode.OK).json(result)
     }
 
-    async getAllByAuthor(req: Request, res: Response) {
-        const author = req.params.author
-        const result = await this.bookService.getAllByAuthor(author)
+    // async getAllByAuthor(req: Request, res: Response) {
+    //     const author = req.params.author
+    //     const result = await this.bookService.getAllByAuthor(author)
 
-        if("promiseError" in result){
-            return res.status(StatusCode.INTERNAL_SERVER_ERROR).json(result)
-        }
+    //     if("promiseError" in result){
+    //         return res.status(StatusCode.INTERNAL_SERVER_ERROR).json(result)
+    //     }
 
-        return res.status(StatusCode.OK).json(result)
-    }
+    //     return res.status(StatusCode.OK).json(result)
+    // }
 
     async getById(req: Request, res: Response) {
         const id = req.params.id
@@ -64,7 +76,7 @@ export class BookController {
         }
 
         const { id } = req.params
-        const { body } = req.body
+        const { body } = req
 
         const result = await this.bookService.update(id, body)
 
@@ -85,7 +97,7 @@ export class BookController {
         }
 
         const { id } = req.params
-        const { body } = req.body
+        const { body } = req
 
         const result = await this.bookService.updateStatus(id, body)
 
@@ -94,6 +106,10 @@ export class BookController {
         }
 
         if("invalidIdError" in result){
+            return res.status(StatusCode.BAD_REQUEST).json(result)
+        }
+
+        if("notFoundError" in result){
             return res.status(StatusCode.BAD_REQUEST).json(result)
         }
 
