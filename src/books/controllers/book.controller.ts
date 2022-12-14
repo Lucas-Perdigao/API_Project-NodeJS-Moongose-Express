@@ -67,7 +67,7 @@ export class BookController {
             return res.status(StatusCode.INTERNAL_SERVER_ERROR).json(result)
         }
 
-        return res.status(StatusCode.OK).json(result)
+        return res.status(StatusCode.CREATED).json(result)
     }
 
     async update(req: Request, res: Response){

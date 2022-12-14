@@ -42,7 +42,6 @@ export class BookService {
             const book = await this.bookRepository.create(bookBody)
             return book 
         } catch (error) {
-            console.log(error)
             return promiseError(error)
         }
     }
@@ -72,7 +71,6 @@ export class BookService {
             }
             return book
         } catch (error) {
-            console.log(error)
             return promiseError(error)
         }
     }

@@ -1,7 +1,7 @@
 import { BookService } from "./book.service";
 import { fakeBookRepository} from "../__mocks__/fake.book.repository"
 import { describe, it, expect, jest } from "@jest/globals";
-import { fakeBookData, fakeId, updatedBook } from "../__mocks__/fake.book.data";
+import { fakeBookData, fakeId, invalidFakeAuthorParam, updatedBook, validFakeAuthorParam } from "../__mocks__/fake.book.data";
 import { invalidIdError } from "../../utils/error.handler";
 
 const bookService = new BookService(fakeBookRepository)
@@ -22,6 +22,30 @@ describe("BookService", () => {
         it("should return an promiseError", async () => {
             jest.spyOn(fakeBookRepository, "getAll").mockRejectedValueOnce("Error")
             const getAllError = await bookService.getAll()
+            expect(getAllError).toEqual({
+                promiseError: {
+                    message: "unable to request to the Database",
+                    error: "Error"
+                }
+            })
+        })
+    })
+
+    describe("getAllByAuthor", () => {
+        it("should call BookRepository.getAllByAuthor()", async () => {
+            const spyGetAll = jest.spyOn(fakeBookRepository, "getAllByAuthor")
+            await bookService.getAllByAuthor(validFakeAuthorParam)
+            expect(spyGetAll).toHaveBeenCalled()
+        })
+
+        it("should return a list of books by author", async () => {
+            const books = await bookService.getAllByAuthor(validFakeAuthorParam)
+            expect(books).toEqual([fakeBookData[0]])
+        })
+
+        it("should return an promiseError", async () => {
+            jest.spyOn(fakeBookRepository, "getAllByAuthor").mockRejectedValueOnce("Error")
+            const getAllError = await bookService.getAllByAuthor(invalidFakeAuthorParam)
             expect(getAllError).toEqual({
                 promiseError: {
                     message: "unable to request to the Database",

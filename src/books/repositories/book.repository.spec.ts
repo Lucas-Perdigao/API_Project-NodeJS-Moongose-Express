@@ -2,8 +2,7 @@ import { BookRepository } from "./book.repository";
 import { jest, describe, it, expect } from "@jest/globals"
 import { fakeBookModel } from "../__mocks__/fake.book.model";
 import { validFakeAuthorParam, fakeBookData, fakeId, updatedBook, invalidFakeAuthorParam } from "../__mocks__/fake.book.data";
-import { Book } from "../models/book.model";
-import { Model } from "mongoose";
+
 
 const bookRepository = new BookRepository(fakeBookModel)
 
@@ -81,7 +80,7 @@ describe("BookRepository", () => {
     })
 
     describe("updateStatus", () => {
-        it("should update a single book", async () => {
+        it("should update a status of a single book", async () => {
             const book = await bookRepository.updateStatus(fakeId, fakeBookData[0])
             expect(book).toEqual(updatedBook)
         })

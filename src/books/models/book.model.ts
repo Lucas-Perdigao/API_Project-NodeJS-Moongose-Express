@@ -4,16 +4,16 @@ const bookSchema = new Schema({
     title: {
         type: String,
         required: true,
-        maxLength: 25
+        maxLength: 24
     },
     releaseDate: {
         type: String,
-        maxLength: 18,
         required: true,
     },
     language: {
         type: [String],
-        required: true
+        required: true,
+        maxLength: 18
     },
     status: {
         type: Boolean,
