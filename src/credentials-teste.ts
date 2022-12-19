@@ -1,0 +1,1 @@
+export const mongo = "AQUI FICA A CONEXÃO COM O BANCO DE DADOS" as string

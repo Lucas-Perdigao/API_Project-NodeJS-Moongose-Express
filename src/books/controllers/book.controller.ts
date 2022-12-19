@@ -29,17 +29,6 @@ export class BookController {
         return res.status(StatusCode.OK).json(result)
     }
 
-    // async getAllByAuthor(req: Request, res: Response) {
-    //     const author = req.params.author
-    //     const result = await this.bookService.getAllByAuthor(author)
-
-    //     if("promiseError" in result){
-    //         return res.status(StatusCode.INTERNAL_SERVER_ERROR).json(result)
-    //     }
-
-    //     return res.status(StatusCode.OK).json(result)
-    // }
-
     async getById(req: Request, res: Response) {
         const id = req.params.id
         const result = await this.bookService.getById(id)
@@ -56,6 +45,7 @@ export class BookController {
     }
 
     async create(req: Request, res: Response) {
+        console.log("teste:", req.body)
         if (invalidBody(req)){
             return res.status(StatusCode.BAD_REQUEST).json(invalidBodyError(req.body))
         }

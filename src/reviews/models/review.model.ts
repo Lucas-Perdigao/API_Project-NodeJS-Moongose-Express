@@ -18,6 +18,7 @@ const reviewSchema = new Schema({
     },
     updatedAt: {
         type: [String],
+        default: new Date().getTime(),
     },
 }, {
     timestamps: { 

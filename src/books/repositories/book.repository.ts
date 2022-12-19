@@ -26,7 +26,7 @@ export class BookRepository {
     }
 
     async getById(id: string): Promise<Book>{
-        const book = await this.bookModel.findById(id).populate('review')
+        const book = await this.bookModel.findById(id).populate('reviewId')
 
         if (book === null){
             return {} as Book
@@ -45,11 +45,8 @@ export class BookRepository {
             {
                 $set:{
                     language: language, 
+                    reviewId: reviewId, 
                 },
-                $push: 
-                    {
-                        reviewId: reviewId, 
-                    }
             }, 
             {
                 new: true

@@ -24,15 +24,15 @@ export class ReviewRepository {
         return newReview
     }
 
-    async update(id: string, book: Review): Promise<Review>{
-        const { content } = book
+    async update(id: string, review: Review): Promise<Review>{
+        const { content } = review
         const updatedReview = await this.reviewModel.findByIdAndUpdate(id,  {
             $set:{
                 content, 
             },
             $push: 
                 {
-                    updatedAt: new Date().getTime()
+                    updatedAt: new Date().toISOString()
                 }
         }, 
         {

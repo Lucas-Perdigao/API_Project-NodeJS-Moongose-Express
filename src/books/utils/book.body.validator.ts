@@ -6,7 +6,8 @@ export function invalidBody(req: Request) {
         releaseDate: req.body.releaseDate,
         language: req.body.language,
         status: req.body.status,
-        author: req.body.author
+        author: req.body.author,
+        reviewId: req.body.reviewId
     }
 
     const jsonBook = JSON.stringify(book)
