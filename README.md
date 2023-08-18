@@ -2,7 +2,7 @@
 
 ## Qual a função desse Repositório ?
 
-1. Esse repositório é um template de API com NodeJs, Express e Jest para a conclusão do terceiro módulo da Arnia.
+1. Esse repositório é um template de API com NodeJs, Express e Jest .
 
 ## Sumário
 
